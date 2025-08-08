@@ -44,12 +44,14 @@ npm run dev
 Open http://localhost:3000
 
 
+
 Usage--->
 Search for a stock by symbol or company name
 Click a result to open the details page
 See current price, day high/low, volume, and the chart
 Click “Add to Favorites” to save it
 Go back to home to see your favorites list
+
 
 
 
