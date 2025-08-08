@@ -1,6 +1,7 @@
 import { ArrowLeftCircle } from 'lucide-react';
 import Link from 'next/link';
 import FavoriteButton from '../../components/FavoriteButton';
+import { Badge } from '../../components/ui/badge';
 import { Button } from '../../components/ui/button';
 
 interface StockPageHeaderProps {
@@ -12,15 +13,13 @@ interface StockPageHeaderProps {
 
 const StockPageHeader = ({ stockInfo, symbol }: StockPageHeaderProps) => {
   return (
-    <div className="mb-8 p-6 bg-card border rounded-lg shadow-sm">
+    <div className="mb-8 p-6 border rounded-lg shadow-sm">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
+          <h1 className="text-2xl font-bold leading-tight text-gray-900 dark:text-white  sm:text-3xl  sm:leading-snug  antialiased  font-sans tracking-tight">
             {stockInfo?.name || symbol}
           </h1>
-          <p  className="text-xl text-muted-foreground  md:pl-[1rem]">
-            {symbol}
-          </p>
+          <Badge className="mt-2  ">{symbol}</Badge>
         </div>
         <div className="flex items-center gap-2 self-start sm:self-center">
           <FavoriteButton symbol={symbol} />

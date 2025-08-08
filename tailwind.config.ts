@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+// tailwind.config.ts
+
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -68,20 +71,12 @@ const config: Config = {
       },
       keyframes: {
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
@@ -90,6 +85,8 @@ const config: Config = {
       },
     },
   },
+  // The plugins array is now correctly placed here
   plugins: [require('tailwindcss-animate')],
 };
+
 export default config;

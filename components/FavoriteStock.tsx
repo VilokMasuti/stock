@@ -73,7 +73,7 @@ export default function FavoriteStocks() {
               <Card key={symbol} className="flex flex-col justify-between p-4">
                 <div className="flex items-start justify-between">
                   <Link href={`/stock/${symbol}`} className="hover:underline">
-                    <p className="text-lg font-bold">{symbol}</p>
+                    <p className="text-sm font-bold">{symbol}</p>
                   </Link>
                   <Button
                     variant="ghost"

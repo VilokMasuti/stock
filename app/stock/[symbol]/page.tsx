@@ -2,7 +2,8 @@ import Link from 'next/link';
 
 import { PackageOpen, TrendingDown, TrendingUp } from 'lucide-react';
 
-import { StockGraphClient } from '../../../components/StockGraphClient';
+import StockGraph from '../../../components/StockGraph';
+import { Badge } from '../../../components/ui/badge';
 import { Button } from '../../../components/ui/button';
 import {
   Card,
@@ -14,7 +15,7 @@ import {
 import { getStockPrices, searchStocks } from '../../../lib/api'; // Adjust path if needed
 import StockPageHeader from '../StockPageHeader';
 
-// Metadata generation (fixed params)
+// Metadata generation -seo
 export async function generateMetadata({
   params,
 }: {
@@ -62,7 +63,7 @@ export default async function StockPage({
     );
   }
 
-  // Safely sort the price data
+  // sort the price data
   const priceData = Array.isArray(rawPriceData)
     ? rawPriceData
         .slice()
@@ -83,7 +84,6 @@ export default async function StockPage({
       ? (currentPrice.close - openPrice.close).toFixed(2)
       : '0.00';
 
-
   const percentChange =
     openPrice && currentPrice
       ? (
@@ -92,19 +92,19 @@ export default async function StockPage({
         ).toFixed(2)
       : '0.00';
 
-
   const changeType = parseFloat(priceChange) >= 0 ? 'up' : 'down';
 
   return (
-    <main className="flex-1 bg-background">
-      <div className="container py-8 md:py-12">
+    <main className="flex-1 bg-background  shadow-lg  bg-slate-50">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <StockPageHeader stockInfo={stockInfo} symbol={symbol} />
-
-        {/* Stats Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <Card>
             <CardHeader className="pb-2">
-              <CardDescription>Current Price</CardDescription>
+              <Badge variant="secondary" className="w-fit bg-black text-white ">
+                Current Price
+              </Badge>
+
               <CardTitle
                 className={`text-3xl ${
                   changeType === 'up' ? 'text-green-500' : 'text-red-500'
@@ -130,25 +130,41 @@ export default async function StockPage({
               </div>
             </CardContent>
           </Card>
+
           <Card>
             <CardHeader>
-              <CardDescription>Day High</CardDescription>
+              <Badge variant="secondary" className="w-fit bg-green-500">
+                {' '}
+                Day High
+              </Badge>
               <CardTitle className="text-2xl">
                 ₹{currentPrice?.high?.toFixed(2) ?? 'N/A'}
               </CardTitle>
             </CardHeader>
           </Card>
+
           <Card>
             <CardHeader>
-              <CardDescription>Day Low</CardDescription>
+              <Badge variant="destructive" className="w-fit ">
+                {' '}
+                Day Low
+              </Badge>
               <CardTitle className="text-2xl">
                 ₹{currentPrice?.low?.toFixed(2) ?? 'N/A'}
               </CardTitle>
             </CardHeader>
           </Card>
+
           <Card>
             <CardHeader>
-              <CardDescription>Volume</CardDescription>
+              <Badge
+                variant="secondary"
+                className="w-fit bg-blue-500 text-white "
+              >
+                {' '}
+                Volume
+              </Badge>
+
               <CardTitle className="text-2xl">
                 {currentPrice?.volume?.toLocaleString() ?? 'N/A'}
               </CardTitle>
@@ -156,16 +172,15 @@ export default async function StockPage({
           </Card>
         </div>
 
-        {/* Chart Section */}
         <Card className="overflow-hidden">
           <CardHeader>
-            <CardTitle> Price Chart</CardTitle>
+            <CardTitle>Price Chart</CardTitle>
             <CardDescription>
               Visualizing today&apos;s price movements for {symbol}.
             </CardDescription>
           </CardHeader>
           <CardContent className="p-2 sm:p-6">
-            <StockGraphClient
+            <StockGraph
               priceDataGraph={priceData.map((item) => ({ ...item, symbol }))}
               symbol={symbol}
             />
