@@ -4,7 +4,7 @@ import StockSearch from '../components/StockSearch';
 
 export default async function Home() {
   return (
-    <main className="flex-1  bg-zinc-100 shadow-md relative">
+    <main className="flex-1  bg-zinc-100  relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center py-16 sm:py-24">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gray-950 antialiased">

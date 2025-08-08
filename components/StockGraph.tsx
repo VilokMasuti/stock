@@ -41,8 +41,8 @@ const StockGraph = ({ priceDataGraph, symbol }: StockGraphProps) => {
         const price = Number(item.close);
 
         const originalDate = item.date;
-        const parsableDate = originalDate.split('T')[0];
-        const dateObj = new Date(parsableDate);
+        const ReadableDate = originalDate.split('T')[0];
+        const dateObj = new Date(ReadableDate);
         const label = dateObj.toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
@@ -55,7 +55,6 @@ const StockGraph = ({ priceDataGraph, symbol }: StockGraphProps) => {
       .filter((d) => Number.isFinite(d.price) && Number.isFinite(d.timestamp))
       .sort((a, b) => a.timestamp - b.timestamp);
 
-    // No need to clear the timer here; it's handled by the effect's nature.
     return formatted;
   }, [priceDataGraph]);
 
@@ -67,8 +66,6 @@ const StockGraph = ({ priceDataGraph, symbol }: StockGraphProps) => {
       maxPrice: Math.max(...prices),
     };
   }, [chartData]);
-
-  // --- RENDER LOGIC ---
 
   if (chartData.length === 0) {
     return (
@@ -106,7 +103,7 @@ const StockGraph = ({ priceDataGraph, symbol }: StockGraphProps) => {
               axisLine={false}
               tickMargin={8}
               interval="preserveStartEnd"
-              minTickGap={60} // Increase gap to prevent label collision
+              minTickGap={60}
             />
             <YAxis
               tickLine={false}
