@@ -55,17 +55,23 @@ Go back to home to see your favorites list
 
 Data Flow--->
 
-User → Home → type → Search API → select → /stock/[symbol]
-Server page → fetch stock info + prices → render UI
-Chart → uses provided price array → format date/time → draw line
+User -> Home -> type ->Search API -> select -> /stock/[symbol]
+
+Server page -> fetch stock info + prices -> render UI
+
+Chart -> uses provided price array -> format date/time -> draw line
+
+
 
 Loading UX-->
 Next.js loading.tsx shows skeletons while data loads
 Stock details
+
 
 Favorites-->
 Save/remove symbols in localStorage.
 ome shows your saved stocks
 
 
-That’s it Thanks for reviewing && Thanks for your Time.
+T
+hat’s it Thanks for reviewing && Thanks for your Time.
