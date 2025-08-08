@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+A simple stock ticker app built with Next.js It lets you search for stocks, view a details page and see a basic price chart. You can also save favorite stocks in your browser.
 
-## Getting Started
+What I Built--->
+Search stocks with autocomplete
+Stock details page using a dynamic route (/stock/[symbol])
+Basic line chart for price history (Recharts)
+SEO meta tags on the details page
+Favorites (save/remove) using localStorage
+Loading skeletons while data is fetching
+Responsive UI with Tailwind CSS
 
-First, run the development server:
 
-```bash
+Tech Used--->
+Next.js 15
+TypeScript
+Tailwind CSS + Shadcn-Ui
+Recharts (for the chart)
+LocalStorage (favorites)
+
+
+
+Project Structure --->
+app/page.tsx — Home page (search + favorites)
+app/stock/[symbol]/page.tsx — Stock details page
+app/stock/[symbol]/loading.tsx — Loading UI for details page
+components/StockSearch.tsx — Search with autocomplete
+components/StockGraph.tsx — Price chart
+components/FavoriteStock.tsx — List of saved stocks
+components/ui/* — Small UI pieces (Badge, Skeleton, etc.)
+lib/api.ts — API calls and simple fallbacks
+
+
+APIs  -->
+Search: GET /api/assignment/search?TCS - example
+Prices: [GET /api/assignment/stock/](https://portal.tradebrains.in/api/assignment/stock/TCS/prices?days=1&format=json&limit=100&type=INTRADAY) -example
+Movers: Was returning 404
+
+
+Setup-->
+Install
+npm install
+Run Dev
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Usage--->
+Search for a stock by symbol or company name
+Click a result to open the details page
+See current price, day high/low, volume, and the chart
+Click “Add to Favorites” to save it
+Go back to home to see your favorites list
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Data Flow--->
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+User → Home → type → Search API → select → /stock/[symbol]
+Server page → fetch stock info + prices → render UI
+Chart → uses provided price array → format date/time → draw line
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Loading UX-->
+Next.js loading.tsx shows skeletons while data loads
+Stock details
 
-## Deploy on Vercel
+Favorites-->
+Save/remove symbols in localStorage.
+ome shows your saved stocks
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+That’s it Thanks for reviewing && Thanks for your Time.
